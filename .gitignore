@@ -1,3 +1,66 @@
+# .NET build output
+bin/
+obj/
+[Bb]uild/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+
+# .NET generated files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# Visual Studio / VS Code
+.vs/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Avalonia / XAML generated caches
+*.g.cs
+*.g.i.cs
+*.Designer.cs
+
+# NuGet
+*.nupkg
+packages/
+.nuget/
+
+# Logs
+*.log
+logs/
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local test/save files
+*.sjson
+*_progress_data.txt
+decrypted*.json
+decrypted*.sjson
+new_progress_data.txt
+original_progress_data.txt
+
+# If you copied SaveTool.exe into the GUI output manually, don't commit it
+SaveTool.exe
+*.exe
+*.dll
+*.pdb
+
 .venv
 cs_src
 py_src
