@@ -1,5 +1,6 @@
 .venv
 cs_src
+py_src
 saves
 private
 __pycache__
