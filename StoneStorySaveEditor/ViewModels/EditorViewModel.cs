@@ -33,6 +33,11 @@ public partial class EditorViewModel : ViewModelBase
 
     [ObservableProperty]
     private bool hasOutput = false;
+    [ObservableProperty]
+    private string searchText = "";
+
+    [ObservableProperty]
+    private int lastSearchIndex = -1;
 
     public EditorViewModel(MainWindowViewModel main, string saveText)
     {
@@ -181,5 +186,59 @@ public partial class EditorViewModel : ViewModelBase
     private void Back()
     {
         main.GoBackToPaste(OriginalText);
+    }
+
+    [RelayCommand]
+    private void Find()
+    {
+        LastSearchIndex = -1;
+        FindNext();
+    }
+
+    [RelayCommand]
+    private void FindNext()
+    {
+        if (string.IsNullOrWhiteSpace(SearchText))
+        {
+            StatusText = "Search text is empty.";
+            return;
+        }
+
+        if (string.IsNullOrEmpty(DecryptedText))
+        {
+            StatusText = "No JSON text to search.";
+            return;
+        }
+
+        int startIndex = LastSearchIndex + 1;
+
+        if (startIndex >= DecryptedText.Length)
+        {
+            startIndex = 0;
+        }
+
+        int index = DecryptedText.IndexOf(
+            SearchText,
+            startIndex,
+            StringComparison.OrdinalIgnoreCase
+        );
+
+        if (index < 0 && startIndex > 0)
+        {
+            index = DecryptedText.IndexOf(
+                SearchText,
+                0,
+                StringComparison.OrdinalIgnoreCase
+            );
+        }
+
+        if (index < 0)
+        {
+            StatusText = $"Could not find: {SearchText}";
+            return;
+        }
+
+        LastSearchIndex = index;
+        StatusText = $"Found '{SearchText}' at index {index:N0}.";
     }
 }

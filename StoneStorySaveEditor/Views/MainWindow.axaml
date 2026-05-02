@@ -4,7 +4,7 @@
         x:Class="StoneStorySaveEditor.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Width="700"
-        Height="1000"
+        Height="900"
         Title="Stone Story Save Editor">
 
     <ContentControl Content="{Binding CurrentPage}" />

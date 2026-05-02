@@ -4,60 +4,80 @@
              x:Class="StoneStorySaveEditor.Views.EditorView"
              x:DataType="vm:EditorViewModel">
 
-    <Grid RowDefinitions="Auto,*,Auto,*" Margin="16" RowSpacing="12">
+        <Grid RowDefinitions="Auto,Auto,*,Auto,*" Margin="16" RowSpacing="12">
 
         <StackPanel Grid.Row="0" Spacing="4">
-            <TextBlock Text="Decrypted Save Data"
-                       FontSize="24"
-                       FontWeight="Bold" />
+                <TextBlock Text="Raw JSON Editor"
+                        FontSize="24"
+                        FontWeight="Bold" />
 
-            <TextBlock Text="{Binding StatusText}"
-                       FontSize="14"
-                       Opacity="0.75"
-                       TextWrapping="Wrap" />
+                <TextBlock Text="{Binding StatusText}"
+                        FontSize="14"
+                        Opacity="0.75"
+                        TextWrapping="Wrap" />
         </StackPanel>
 
-        <ScrollViewer Grid.Row="1"
-                      VerticalScrollBarVisibility="Auto"
-                      HorizontalScrollBarVisibility="Auto">
-            <TextBox Text="{Binding DecryptedText, Mode=TwoWay}"
-                     AcceptsReturn="True"
-                     TextWrapping="Wrap"
-                     FontFamily="Consolas, Cascadia Mono, monospace"
-                     FontSize="14"
-                     Padding="12"
-                     Watermark="Decrypted save text will appear here..."
-                     MinHeight="450" />
-        </ScrollViewer>
+        <!-- Search bar -->
+        <Grid Grid.Row="1" ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+                <TextBox x:Name="SearchBox"
+                        Text="{Binding SearchText, Mode=TwoWay}"
+                        Watermark="Search JSON..."
+                        FontSize="14" />
 
-        <Grid Grid.Row="2" ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="8">
-            <Button Grid.Column="0"
-                    Content="Back"
-                    Command="{Binding BackCommand}" />
+                <Button Grid.Column="1"
+                        Content="Find"
+                        Click="FindButton_Click" />
 
-            <TextBlock Grid.Column="1"
-                       Text="{Binding StatusText}"
-                       VerticalAlignment="Center"
-                       Opacity="0.8"
-                       TextWrapping="Wrap" />
-
-            <Button Grid.Column="2"
-                    Content="Export"
-                    Command="{Binding ExportCommand}" />
+                <Button Grid.Column="2"
+                        Content="Find Next"
+                        Click="FindNextButton_Click" />
         </Grid>
 
-        <ScrollViewer Grid.Row="3"
-                  VerticalScrollBarVisibility="Auto"
-                  HorizontalScrollBarVisibility="Auto">
-            <TextBox Text="{Binding OutputText, Mode=TwoWay}"
-                    AcceptsReturn="True"
-                    TextWrapping="Wrap"
-                    FontFamily="Consolas, Cascadia Mono, monospace"
-                    FontSize="14"
-                    Padding="12"
-                    Watermark="Exported full save text will appear here after clicking Export..."
-                    MinHeight="200" />
+        <!-- Editable JSON -->
+        <ScrollViewer Grid.Row="2"
+                        VerticalScrollBarVisibility="Auto"
+                        HorizontalScrollBarVisibility="Auto">
+                <TextBox x:Name="JsonEditor"
+                        Text="{Binding DecryptedText, Mode=TwoWay}"
+                        AcceptsReturn="True"
+                        TextWrapping="Wrap"
+                        FontFamily="Consolas, Cascadia Mono, monospace"
+                        FontSize="14"
+                        Padding="12"
+                        Watermark="Edit JSON here..."
+                        MinHeight="300" />
         </ScrollViewer>
 
-    </Grid>
+        <!-- Buttons -->
+        <Grid Grid.Row="3" ColumnDefinitions="Auto,Auto,*,Auto" ColumnSpacing="8">
+                <Button Grid.Column="0"
+                        Content="Back"
+                        Command="{Binding BackCommand}" />
+
+                <Button Grid.Column="1"
+                        Content="Export"
+                        Command="{Binding ExportCommand}" />
+
+                <TextBlock Grid.Column="2"
+                        Text="{Binding StatusText}"
+                        VerticalAlignment="Center"
+                        Opacity="0.8"
+                        TextWrapping="Wrap" />
+        </Grid>
+
+        <!-- Exported full save text -->
+        <ScrollViewer Grid.Row="4"
+                        VerticalScrollBarVisibility="Auto"
+                        HorizontalScrollBarVisibility="Auto">
+                <TextBox Text="{Binding OutputText, Mode=TwoWay}"
+                        AcceptsReturn="True"
+                        TextWrapping="Wrap"
+                        FontFamily="Consolas, Cascadia Mono, monospace"
+                        FontSize="14"
+                        Padding="12"
+                        Watermark="Exported full save text will appear here after clicking Export..."
+                        MinHeight="200" />
+        </ScrollViewer>
+
+        </Grid>
 </UserControl>
