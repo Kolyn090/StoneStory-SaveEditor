@@ -1,0 +1,6 @@
+.venv
+cs_src
+saves
+private
+__pycache__
+data
