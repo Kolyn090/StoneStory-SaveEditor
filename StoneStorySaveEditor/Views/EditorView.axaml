@@ -4,7 +4,7 @@
              x:Class="StoneStorySaveEditor.Views.EditorView"
              x:DataType="vm:EditorViewModel">
 
-    <Grid RowDefinitions="Auto,*,Auto" Margin="16" RowSpacing="12">
+    <Grid RowDefinitions="Auto,*,Auto,*" Margin="16" RowSpacing="12">
 
         <StackPanel Grid.Row="0" Spacing="4">
             <TextBlock Text="Decrypted Save Data"
@@ -30,7 +30,7 @@
                      MinHeight="450" />
         </ScrollViewer>
 
-        <Grid Grid.Row="2" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+        <Grid Grid.Row="2" ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="8">
             <Button Grid.Column="0"
                     Content="Back"
                     Command="{Binding BackCommand}" />
@@ -42,9 +42,22 @@
                        TextWrapping="Wrap" />
 
             <Button Grid.Column="2"
-                    Content="Encrypt Later"
-                    IsEnabled="False" />
+                    Content="Export"
+                    Command="{Binding ExportCommand}" />
         </Grid>
+
+        <ScrollViewer Grid.Row="3"
+                  VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Auto">
+            <TextBox Text="{Binding OutputText, Mode=TwoWay}"
+                    AcceptsReturn="True"
+                    TextWrapping="Wrap"
+                    FontFamily="Consolas, Cascadia Mono, monospace"
+                    FontSize="14"
+                    Padding="12"
+                    Watermark="Exported full save text will appear here after clicking Export..."
+                    MinHeight="200" />
+        </ScrollViewer>
 
     </Grid>
 </UserControl>

@@ -3,8 +3,8 @@
         xmlns:vm="using:StoneStorySaveEditor.ViewModels"
         x:Class="StoneStorySaveEditor.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Width="1000"
-        Height="700"
+        Width="700"
+        Height="1000"
         Title="Stone Story Save Editor">
 
     <ContentControl Content="{Binding CurrentPage}" />
