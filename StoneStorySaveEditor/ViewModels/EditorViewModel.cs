@@ -22,6 +22,12 @@ public partial class EditorViewModel : ViewModelBase
     [ObservableProperty]
     private bool isBusy = true;
 
+    [ObservableProperty]
+    private object? saveObject;
+
+    [ObservableProperty]
+    private string jsonText = "";
+
     public EditorViewModel(MainWindowViewModel main, string saveText)
     {
         this.main = main;
@@ -37,7 +43,16 @@ public partial class EditorViewModel : ViewModelBase
             IsBusy = true;
             StatusText = "Decrypting pasted save text...";
 
-            DecryptedText = await SaveToolRunner.DecryptTextAsync(ExtractProgressDataLine(OriginalText));
+            StatusText = "Decrypting progress_data...";
+            string slimJson = await SaveToolRunner.DecryptTextAsync(ExtractProgressDataLine(OriginalText));
+
+            StatusText = "Converting SlimJson to object...";
+            SaveObject = SlimJsonConverter.ToObject(slimJson);
+
+            StatusText = "Formatting JSON...";
+            JsonText = SlimJsonConverter.ToPrettyJson(SaveObject);
+
+            DecryptedText = JsonText;
 
             StatusText = $"Decrypted successfully. Length: {DecryptedText.Length:N0} characters.";
         }
