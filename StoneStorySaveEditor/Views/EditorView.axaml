@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:StoneStorySaveEditor.ViewModels"
+             x:Class="StoneStorySaveEditor.Views.EditorView"
+             x:DataType="vm:EditorViewModel">
+
+    <Grid RowDefinitions="Auto,*,Auto" Margin="16" RowSpacing="12">
+
+        <StackPanel Grid.Row="0" Spacing="4">
+            <TextBlock Text="Decrypted Save Data"
+                       FontSize="24"
+                       FontWeight="Bold" />
+
+            <TextBlock Text="{Binding StatusText}"
+                       FontSize="14"
+                       Opacity="0.75"
+                       TextWrapping="Wrap" />
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto">
+            <TextBox Text="{Binding DecryptedText, Mode=TwoWay}"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     FontFamily="Consolas, Cascadia Mono, monospace"
+                     FontSize="14"
+                     Padding="12"
+                     Watermark="Decrypted save text will appear here..."
+                     MinHeight="450" />
+        </ScrollViewer>
+
+        <Grid Grid.Row="2" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+            <Button Grid.Column="0"
+                    Content="Back"
+                    Command="{Binding BackCommand}" />
+
+            <TextBlock Grid.Column="1"
+                       Text="{Binding StatusText}"
+                       VerticalAlignment="Center"
+                       Opacity="0.8"
+                       TextWrapping="Wrap" />
+
+            <Button Grid.Column="2"
+                    Content="Encrypt Later"
+                    IsEnabled="False" />
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -7,48 +7,6 @@
         Height="700"
         Title="Stone Story Save Editor">
 
-    <Grid RowDefinitions="Auto,*,Auto" Margin="16" RowSpacing="12">
+    <ContentControl Content="{Binding CurrentPage}" />
 
-        <!-- Header -->
-        <StackPanel Grid.Row="0" Spacing="4">
-            <TextBlock Text="Stone Story Save Editor"
-                       FontSize="24"
-                       FontWeight="Bold" />
-
-            <TextBlock Text="Paste the exported save text below."
-                       FontSize="14"
-                       Opacity="0.75" />
-        </StackPanel>
-
-        <!-- Big text panel -->
-        <ScrollViewer Grid.Row="1"
-              VerticalScrollBarVisibility="Auto"
-              HorizontalScrollBarVisibility="Auto">
-            <TextBox Text="{Binding SaveText, Mode=TwoWay}"
-                    AcceptsReturn="True"
-                    TextWrapping="Wrap"
-                    FontFamily="Consolas, Cascadia Mono, monospace"
-                    FontSize="14"
-                    Padding="12"
-                    Watermark="Paste save/export text here with Ctrl+V..."
-                    MinHeight="450" />
-        </ScrollViewer>
-
-        <!-- Bottom buttons/status -->
-        <Grid Grid.Row="2" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
-            <Button Grid.Column="0"
-                    Content="Clear"
-                    Command="{Binding ClearCommand}" />
-
-            <TextBlock Grid.Column="1"
-                       Text="{Binding StatusText}"
-                       VerticalAlignment="Center"
-                       Opacity="0.8" />
-
-            <Button Grid.Column="2"
-                    Content="Next"
-                    Command="{Binding NextCommand}" />
-        </Grid>
-
-    </Grid>
 </Window>

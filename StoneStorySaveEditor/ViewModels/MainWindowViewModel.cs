@@ -1,43 +1,27 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 
 namespace StoneStorySaveEditor.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
     [ObservableProperty]
-    private string saveText = "";
+    private ViewModelBase currentPage;
 
-    [ObservableProperty]
-    private string statusText = "Ready. Paste save text into the box.";
-
-    [RelayCommand]
-    private void Clear()
+    public MainWindowViewModel()
     {
-        SaveText = "";
-        StatusText = "Cleared.";
+        CurrentPage = new PasteSaveViewModel(this);
     }
 
-    [RelayCommand]
-    private void Next()
+    public void GoToEditor(string saveText)
     {
-        if (string.IsNullOrWhiteSpace(SaveText))
-        {
-            StatusText = "Paste save text first.";
-            return;
-        }
+        CurrentPage = new EditorViewModel(this, saveText);
+    }
 
-        if (SaveText.Contains("STRING_KEYS:"))
+    public void GoBackToPaste(string saveText)
+    {
+        CurrentPage = new PasteSaveViewModel(this)
         {
-            StatusText = $"Looks like full export text. Length: {SaveText.Length:N0} characters.";
-        }
-        else if (SaveText.Contains("progress_data:") || SaveText.Contains("\"progress_data\""))
-        {
-            StatusText = $"Looks like save metadata with progress_data. Length: {SaveText.Length:N0} characters.";
-        }
-        else
-        {
-            StatusText = $"Text loaded, but format is unknown. Length: {SaveText.Length:N0} characters.";
-        }
+            SaveText = saveText
+        };
     }
 }
