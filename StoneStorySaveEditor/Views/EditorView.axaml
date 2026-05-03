@@ -22,7 +22,9 @@
                 <TextBox x:Name="SearchBox"
                         Text="{Binding SearchText, Mode=TwoWay}"
                         Watermark="Search JSON..."
-                        FontSize="14" />
+                        FontFamily="Consolas, Cascadia Mono, monospace"
+                        FontSize="14"
+                        Padding="12" />
 
                 <Button Grid.Column="1"
                         Content="Find"
@@ -60,6 +62,7 @@
                         Text="{Binding DecryptedText, Mode=TwoWay}"
                         AcceptsReturn="True"
                         TextWrapping="Wrap"
+                        FontFamily="Consolas, Cascadia Mono, monospace"
                         FontSize="14"
                         Padding="12"
                         Watermark="Edit JSON here..."
