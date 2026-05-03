@@ -7,7 +7,7 @@
         <Grid RowDefinitions="Auto,Auto,Auto,*,Auto,*" Margin="16" RowSpacing="12">
 
         <StackPanel Grid.Row="0" Spacing="4">
-                <TextBlock Text="Raw JSON Editor"
+                <TextBlock Text="Decrypted JSON Editor"
                         FontSize="24"
                         FontWeight="Bold" />
 

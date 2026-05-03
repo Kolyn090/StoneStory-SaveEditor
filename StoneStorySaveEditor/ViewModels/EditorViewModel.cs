@@ -65,7 +65,7 @@ public partial class EditorViewModel : ViewModelBase
 
             DecryptedText = ProgressJson;
 
-            StatusText = $"Decrypted successfully. Length: {DecryptedText.Length:N0} characters.";
+            StatusText = $"Decrypted successfully. Now you can edit your save file. Click 'Export' when you finish.";
         }
         catch (Exception ex)
         {
@@ -100,7 +100,7 @@ public partial class EditorViewModel : ViewModelBase
             OutputText = ReplaceProgressData(OriginalText, newProgressData);
             HasOutput = true;
 
-            StatusText = $"Export ready! Copy the following data to clipboard and import it in your game.";
+            StatusText = $"Export ready! Copy data in the bottom textbox to clipboard and import it in your game.";
         }
         catch (Exception ex)
         {
