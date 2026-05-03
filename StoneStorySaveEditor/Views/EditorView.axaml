@@ -60,7 +60,6 @@
                         Text="{Binding DecryptedText, Mode=TwoWay}"
                         AcceptsReturn="True"
                         TextWrapping="Wrap"
-                        FontFamily="Consolas, Cascadia Mono, monospace"
                         FontSize="14"
                         Padding="12"
                         Watermark="Edit JSON here..."

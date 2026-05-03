@@ -1,10 +1,9 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="using:StoneStorySaveEditor"
              xmlns:vm="using:StoneStorySaveEditor.ViewModels"
              xmlns:views="using:StoneStorySaveEditor.Views"
              x:Class="StoneStorySaveEditor.App"
-             RequestedThemeVariant="Default">
+             RequestedThemeVariant="Dark">
 
     <Application.DataTemplates>
         <DataTemplate DataType="{x:Type vm:PasteSaveViewModel}">
@@ -18,5 +17,36 @@
 
     <Application.Styles>
         <FluentTheme />
+
+        <Style Selector="Window">
+            <Setter Property="Background" Value="#000000" />
+            <Setter Property="Foreground" Value="#B8B8B8" />
+        </Style>
+
+        <Style Selector="UserControl">
+            <Setter Property="Background" Value="#000000" />
+            <Setter Property="Foreground" Value="#B8B8B8" />
+        </Style>
+
+        <Style Selector="TextBlock">
+            <Setter Property="Foreground" Value="#B8B8B8" />
+            <Setter Property="FontFamily" Value="Cascadia Mono, Consolas, monospace" />
+        </Style>
+
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="#000000" />
+            <Setter Property="Foreground" Value="#B8B8B8" />
+            <Setter Property="CaretBrush" Value="#FFFFFF" />
+            <Setter Property="SelectionBrush" Value="#333333" />
+            <Setter Property="BorderBrush" Value="#333333" />
+            <Setter Property="FontFamily" Value="Cascadia Mono, Consolas, monospace" />
+        </Style>
+
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#111111" />
+            <Setter Property="Foreground" Value="#B8B8B8" />
+            <Setter Property="BorderBrush" Value="#444444" />
+            <Setter Property="FontFamily" Value="Cascadia Mono, Consolas, monospace" />
+        </Style>
     </Application.Styles>
 </Application>
