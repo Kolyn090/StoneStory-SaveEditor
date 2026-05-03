@@ -1,5 +1,6 @@
 # StoneStory Save Editor
 
+![cosmetics](readme-img/cosmetics.png)
 
 ## 🪨 Intro
 
