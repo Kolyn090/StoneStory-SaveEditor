@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using System.Text.Json.Serialization.Metadata;
 
 namespace StoneStorySaveEditor.Services
 {
@@ -17,7 +18,8 @@ namespace StoneStorySaveEditor.Services
         {
             var options = new JsonSerializerOptions
             {
-                WriteIndented = true
+                WriteIndented = true,
+                TypeInfoResolver = new DefaultJsonTypeInfoResolver()
             };
 
             return JsonSerializer.Serialize(obj, options);
@@ -29,7 +31,8 @@ namespace StoneStorySaveEditor.Services
 
             var options = new JsonSerializerOptions
             {
-                WriteIndented = true
+                WriteIndented = true,
+                TypeInfoResolver = new DefaultJsonTypeInfoResolver()
             };
 
             return JsonSerializer.Serialize(parsed, options);

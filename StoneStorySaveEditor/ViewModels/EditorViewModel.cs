@@ -241,4 +241,21 @@ public partial class EditorViewModel : ViewModelBase
         LastSearchIndex = index;
         StatusText = $"Found '{SearchText}' at index {index:N0}.";
     }
+
+    [RelayCommand]
+    private void UnlockAllCosmetics()
+    {
+        try
+        {
+            StatusText = "Unlocking all cosmetics...";
+
+            DecryptedText = SaveEditService.UnlockAllCosmetics(DecryptedText);
+
+            StatusText = "All cosmetics unlocked. Click Export to generate the final save text.";
+        }
+        catch (Exception ex)
+        {
+            StatusText = "Unlock all cosmetics failed: " + ex.Message;
+        }
+    }
 }

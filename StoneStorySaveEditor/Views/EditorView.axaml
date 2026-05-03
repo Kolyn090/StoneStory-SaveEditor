@@ -4,7 +4,7 @@
              x:Class="StoneStorySaveEditor.Views.EditorView"
              x:DataType="vm:EditorViewModel">
 
-        <Grid RowDefinitions="Auto,Auto,*,Auto,*" Margin="16" RowSpacing="12">
+        <Grid RowDefinitions="Auto,Auto,Auto,*,Auto,*" Margin="16" RowSpacing="12">
 
         <StackPanel Grid.Row="0" Spacing="4">
                 <TextBlock Text="Raw JSON Editor"
@@ -33,8 +33,27 @@
                         Click="FindNextButton_Click" />
         </Grid>
 
+        <!-- Tools -->
+        <Border Grid.Row="2"
+                Padding="10"
+                BorderBrush="Gray"
+                BorderThickness="1"
+                CornerRadius="8">
+        <StackPanel Spacing="8">
+                <TextBlock Text="Tools"
+                        FontSize="16"
+                        FontWeight="Bold" />
+
+                <WrapPanel>
+                <Button Content="Unlock All Cosmetics"
+                        Command="{Binding UnlockAllCosmeticsCommand}"
+                        Margin="0,0,8,0" />
+                </WrapPanel>
+        </StackPanel>
+        </Border>
+
         <!-- Editable JSON -->
-        <ScrollViewer Grid.Row="2"
+        <ScrollViewer Grid.Row="3"
                         VerticalScrollBarVisibility="Auto"
                         HorizontalScrollBarVisibility="Auto">
                 <TextBox x:Name="JsonEditor"
@@ -49,7 +68,7 @@
         </ScrollViewer>
 
         <!-- Buttons -->
-        <Grid Grid.Row="3" ColumnDefinitions="Auto,Auto,*,Auto" ColumnSpacing="8">
+        <Grid Grid.Row="4" ColumnDefinitions="Auto,Auto,*,Auto" ColumnSpacing="8">
                 <Button Grid.Column="0"
                         Content="Back"
                         Command="{Binding BackCommand}" />
@@ -66,7 +85,7 @@
         </Grid>
 
         <!-- Exported full save text -->
-        <ScrollViewer Grid.Row="4"
+        <ScrollViewer Grid.Row="5"
                         VerticalScrollBarVisibility="Auto"
                         HorizontalScrollBarVisibility="Auto">
                 <TextBox Text="{Binding OutputText, Mode=TwoWay}"
