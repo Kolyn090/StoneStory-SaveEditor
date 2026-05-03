@@ -56,8 +56,8 @@ new_progress_data.txt
 original_progress_data.txt
 
 # If you copied SaveTool.exe into the GUI output manually, don't commit it
-SaveTool.exe
 *.exe
+!SaveTool.exe
 *.dll
 *.pdb
 
