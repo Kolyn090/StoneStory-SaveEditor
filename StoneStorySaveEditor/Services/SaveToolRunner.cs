@@ -31,21 +31,30 @@ namespace StoneStorySaveEditor.Services
             {
                 File.WriteAllText(inputPath, inputText, Encoding.UTF8);
 
-                string exePath = Path.Combine(AppContext.BaseDirectory, "SaveTool.exe");
+                string saveToolPath = Path.Combine(AppContext.BaseDirectory, "SaveTool.exe");
 
-                if (!File.Exists(exePath))
+                if (!File.Exists(saveToolPath))
                 {
-                    throw new FileNotFoundException("Could not find SaveTool.exe next to the GUI app.", exePath);
+                    throw new FileNotFoundException("Could not find SaveTool.exe.", saveToolPath);
                 }
 
                 var psi = new ProcessStartInfo
                 {
-                    FileName = exePath,
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     CreateNoWindow = true
                 };
+
+                if (OperatingSystem.IsWindows())
+                {
+                    psi.FileName = saveToolPath;
+                }
+                else
+                {
+                    psi.FileName = "mono";
+                    psi.ArgumentList.Add(saveToolPath);
+                }
 
                 psi.ArgumentList.Add(mode);
                 psi.ArgumentList.Add(inputPath);
@@ -55,16 +64,11 @@ namespace StoneStorySaveEditor.Services
 
                 if (process == null)
                 {
-                    throw new Exception("Failed to start SaveTool.exe.");
+                    throw new Exception("Failed to start SaveTool.");
                 }
 
                 using (process)
                 {
-                    if (process == null)
-                    {
-                        throw new Exception("Failed to start SaveTool.exe.");
-                    }
-
                     string stdout = await process.StandardOutput.ReadToEndAsync();
                     string stderr = await process.StandardError.ReadToEndAsync();
 
@@ -73,16 +77,7 @@ namespace StoneStorySaveEditor.Services
                     if (process.ExitCode != 0)
                     {
                         throw new Exception(
-                            "SaveTool.exe failed with exit code " + process.ExitCode +
-                            "\n\nSTDOUT:\n" + stdout +
-                            "\n\nSTDERR:\n" + stderr
-                        );
-                    }
-
-                    if (!File.Exists(outputPath))
-                    {
-                        throw new Exception(
-                            "SaveTool.exe finished, but did not create output file." +
+                            "SaveTool failed with exit code " + process.ExitCode +
                             "\n\nSTDOUT:\n" + stdout +
                             "\n\nSTDERR:\n" + stderr
                         );
@@ -109,7 +104,6 @@ namespace StoneStorySaveEditor.Services
             }
             catch
             {
-                // Ignore temp cleanup failure.
             }
         }
     }
